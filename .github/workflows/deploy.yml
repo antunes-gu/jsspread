@@ -1,0 +1,39 @@
+name: Google Apps Script Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Baixa o código do seu repositório
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      # Instala o Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Instala o pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      # Instala as dependências do projeto (como o próprio clasp)
+      - name: Instalar dependências
+        run: pnpm install
+
+      # Cria o arquivo de credenciais do Clasp temporariamente usando o Segredo
+      - name: Criar credenciais do Clasp
+        run: echo '${{ secrets.CLASPRC_JSON }}' > ~/.clasprc.json
+
+      # Faz o push para o Google Apps Script
+      - name: Clasp push
+        run: pnpm run push
