@@ -32,7 +32,14 @@ jobs:
 
       # Cria o arquivo de credenciais do Clasp temporariamente usando o Segredo
       - name: Criar credenciais do Clasp
-        run: echo '${{ secrets.CLASPRC_JSON }}' > ~/.clasprc.json
+        env: 
+          CLASP_TOKEN: ${{ secrets.CLASPRC_JSON }}
+        run: |
+          echo "$CLASP_TOKEN" > ~/.clasprc.json
+          if [ ! -s ~/.clasprc.json ] || ! grep -q "access_token" ~/.clasprc.json; then
+            echo "Error: CLASPRC_JSON secret is missing or invalid"
+            exit 1
+          fi
 
       # Faz o push para o Google Apps Script
       - name: Clasp push
