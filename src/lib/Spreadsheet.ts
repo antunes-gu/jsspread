@@ -3,8 +3,8 @@
  * @class
  */
 class Spreadsheet {
-  id: string | null;
-  file: GoogleAppsScript.Spreadsheet.Spreadsheet;
+  declare id: string | null;
+  declare file: GoogleAppsScript.Spreadsheet.Spreadsheet;
 
   /**
    * Inicializa o objeto da Planilha.

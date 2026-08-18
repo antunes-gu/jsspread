@@ -3,9 +3,9 @@
  * @class
  */
 class Cell {
-  row: number;
-  col: number;
-  value: any;
+  declare row: number;
+  declare col: number;
+  declare value: any;
 
   /**
    * Representa uma célula individual na planilha.

@@ -3,8 +3,8 @@
  * @class
  */
 class Worksheet {
-  spreadsheet: Spreadsheet;
-  sheet: GoogleAppsScript.Spreadsheet.Sheet;
+  declare spreadsheet: Spreadsheet;
+  declare sheet: GoogleAppsScript.Spreadsheet.Sheet;
 
   /**
    * Inicializa o objeto da Aba.
