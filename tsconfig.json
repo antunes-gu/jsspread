@@ -5,7 +5,7 @@
     "lib": ["ESNext", "DOM"],
     "strict": true,
     "noImplicitAny": false,
-    "typeRoots": ["./node_modules/@types"]
+    "types": ["google-apps-script"]
   },
   "include": [
     "src/**/*.ts"
