@@ -30,14 +30,14 @@ jobs:
       - name: Instalar dependências
         run: pnpm install
 
-      # Cria o arquivo de credenciais do Clasp temporariamente usando o Segredo
+      # Cria o arquivo de credenciais usando o Node.js para evitar quebra de formatação
       - name: Criar credenciais do Clasp
         env: 
           CLASP_TOKEN: ${{ secrets.CLASPRC_JSON }}
         run: |
-          echo "$CLASP_TOKEN" > ~/.clasprc.json
+          node -e "require('fs').writeFileSync(require('os').homedir() + '/.clasprc.json', process.env.CLASP_TOKEN)"
           if [ ! -s ~/.clasprc.json ] || ! grep -q "access_token" ~/.clasprc.json; then
-            echo "Error: CLASPRC_JSON secret is missing or invalid"
+            echo "Error: CLASPRC_JSON secret is missing, invalid, or corrupted."
             exit 1
           fi
 
