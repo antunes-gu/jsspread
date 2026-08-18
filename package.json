@@ -19,6 +19,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "@google/clasp": "^2.5.0",
     "@types/google-apps-script": "^2.0.12",
     "ts-node": "^10.9.2",
     "typescript": "^7.0.2"
